@@ -27,7 +27,6 @@ assert check_vals(1188511885) == True
 
 total = 0
 for a,b in map(lambda x:x.split('-'), d.split(',')):
-    print(a,b)
     for x in range(int(a),int(b)+1):
         if check_vals(x):
             total+=x
@@ -38,7 +37,7 @@ assert check_any_pos(824824824) == True
 
 total = 0
 for a,b in map(lambda x:x.split('-'), d.split(',')):
-    print(a,b)
+    # print(a,b)
     for x in range(int(a),int(b)+1):
         if check_vals(x) or check_any_pos(x):
             total+=x
