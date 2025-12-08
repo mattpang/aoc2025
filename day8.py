@@ -1,5 +1,5 @@
-import math
-import collections
+from math import prod
+from collections import Counter
 
 d = """162,817,812
 57,618,57
@@ -23,7 +23,6 @@ d = """162,817,812
 425,690,689"""
 
 d = open("./inputs/8.txt", "r").read()
-
 
 boxes = []
 for line in d.splitlines():
@@ -54,24 +53,24 @@ matched = set()
 limit = 1000
 
 def connect(circuits, a: tuple[int], b: tuple[int]):
-    circuit1 = circuits[a]
-    circuit2 = circuits[b]
-    if circuit1 == circuit2:
+    c1 = circuits[a]
+    c2 = circuits[b]
+    if c1 == c2:
         return
     for i, circuit in enumerate(circuits):
-        if circuit == circuit2:
-            circuits[i] = circuit1
-
+        if circuit == c2:
+            circuits[i] = c1
 
 for i, ((x, y), r) in enumerate(dists):
+    # need to do it in order of junctions, since we are updating a list now
     id1 = boxes.index(x)
     id2 = boxes.index(y)
     connect(circuits, id1, id2)
 
     if i == limit - 1:
-        circuits_counted = collections.Counter(circuits)
+        circuits_counted = Counter(circuits)
         largest_circuits = circuits_counted.most_common(3)
-        ans = math.prod(count for _, count in largest_circuits)
+        ans = prod(count for _, count in largest_circuits)
         print(ans)
 
     if len(set(circuits)) == 1:
