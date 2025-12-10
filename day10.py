@@ -11,7 +11,7 @@ d = open("inputs/10.txt").read()
 data = []
 tally = 0
 p2_tally = 0
-calc_p1 = False
+calc_p1 = True
 for line in d.splitlines():
     elements = line.split(" ")
     outcome = [i == "#" for i in elements[0][1:-1]]
